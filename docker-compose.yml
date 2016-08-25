@@ -1,0 +1,10 @@
+version: '2'
+services:
+  processor-move-files:
+    build: .
+    image: keboola/processor-move-files
+    tty: true
+    stdin_open: true
+    command: sh
+    volumes:
+      - ./:/code
