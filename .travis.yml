@@ -15,7 +15,7 @@ install:
 before_script:
   - docker -v
   - docker-compose -v
-  - docker-compose build processor-skip-lines
+  - docker-compose build processor-move-files
 script: docker-compose run --rm --entrypoint sh -e KBC_DATADIR=/code/Tests/data processor-move-files /code/tests/run.sh
 after_success:
   - docker images
