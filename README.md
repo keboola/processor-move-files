@@ -6,7 +6,7 @@
 Move files processor. Moves files
 
  - from `/in/tables/*` to `/out/files/*` or
- - from `/in/files/*` to `/out/tables/*.csv` (adds `.csv` suffix to each file)
+ - from `/in/files/*` to `/out/tables/*.csv` (optionally adds `.csv` suffix to each file)
   
 Does not copy manifest files.
  
@@ -39,7 +39,8 @@ Clone this repository and init the workspace with following commands:
         "component": "keboola.processor.move-files"
     },
     "parameters": {
-        "direction": "tables" 
+        "direction": "tables",
+        "addCsvSuffix": true
     }
 }
 ```
@@ -48,5 +49,9 @@ Clone this repository and init the workspace with following commands:
 
 ### direction
 
- - **tables**: from `/in/files/*` to `/out/tables/*.csv` (adds `.csv` suffix to each file)
+ - **tables**: from `/in/files/*` to `/out/tables/*` 
  - **files**: from `/in/tables/*` to `/out/files/*`
+
+### addCsvSuffix
+
+Available only on `tables` direction, adds `.csv` suffix to each file.
