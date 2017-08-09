@@ -1,7 +1,6 @@
 # processor-move-files
 
 [![Build Status](https://travis-ci.org/keboola/processor-move-files.svg?branch=master)](https://travis-ci.org/keboola/processor-move-files)
-[![Docker Repository on Quay](https://quay.io/repository/keboola/processor-move-files/status "Docker Repository on Quay")](https://quay.io/repository/keboola/processor-move-files)
 
 Move files processor. Moves files
 
