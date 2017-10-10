@@ -26,7 +26,7 @@ Clone this repository and init the workspace with following commands:
  - [Build steps](https://github.com/keboola/processor-move-files/blob/master/.travis.yml)
    - build image
    - execute tests against new image
-   - publish image to [quay.io](https://quay.io/repository/keboola/processor-move-files). Only if release is tagged
+   - publish image to AWS ECR if the release is tagged
    
 # Usage
 
