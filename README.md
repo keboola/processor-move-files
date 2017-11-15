@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/keboola/processor-move-files.svg?branch=master)](https://travis-ci.org/keboola/processor-move-files)
 
-Move files processor. Moves files
+Move files processor. Moves files (or folders with sliced tables)
 
  - from `/in/tables/*` to `/out/files/*` or
  - from `/in/files/*` to `/out/tables/*.csv` (optionally adds `.csv` suffix to each file)
@@ -35,7 +35,7 @@ Clone this repository and init the workspace with following commands:
 ```
 {  
     "definition": {
-        "component": "keboola.processor.move-files"
+        "component": "keboola.processor-move-files"
     },
     "parameters": {
         "direction": "tables",
