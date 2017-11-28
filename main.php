@@ -42,14 +42,14 @@ try {
         $finder = new \Symfony\Component\Finder\Finder();
         $finder->directories()->notName("*.manifest")->in($dataFolder . "/in/tables")->depth(0);
         foreach ($finder as $sourceDirectory) {
-            $moveCommand = "mv " . $sourceDirectory->getPathName() . " " . $outputPath . "/" . $sourceDirectory->getBasename();
+            $moveCommand = "mv " . $sourceDirectory->getPathname() . " " . $outputPath . "/" . $sourceDirectory->getBasename();
             (new \Symfony\Component\Process\Process($moveCommand))->mustRun();
         }
 
         $finder = new \Symfony\Component\Finder\Finder();
         $finder->notName("*.manifest")->in($dataFolder . "/in/tables")->depth(0);
         foreach ($finder as $sourceFile) {
-            $moveCommand = "mv " . $sourceFile->getPathName() . " " . $outputPath . "/" . $sourceFile->getBasename();
+            $moveCommand = "mv " . $sourceFile->getPathname() . " " . $outputPath . "/" . $sourceFile->getBasename();
             (new \Symfony\Component\Process\Process($moveCommand))->mustRun();
         }
     }
@@ -65,14 +65,14 @@ try {
         $finder = new \Symfony\Component\Finder\Finder();
         $finder->directories()->notName("*.manifest")->in($dataFolder . "/in/files")->depth(0);
         foreach ($finder as $sourceDirectory) {
-            $moveCommand = "mv " . $sourceDirectory->getPathName() . " " . $outputPath . "/" . $sourceDirectory->getBasename() . $csvSuffix;
+            $moveCommand = "mv " . $sourceDirectory->getPathname() . " " . $outputPath . "/" . $sourceDirectory->getBasename() . $csvSuffix;
             (new \Symfony\Component\Process\Process($moveCommand))->mustRun();
         }
 
         $finder = new \Symfony\Component\Finder\Finder();
         $finder->files()->notName("*.manifest")->in($dataFolder . "/in/files")->depth(0);
         foreach ($finder as $sourceFile) {
-            $moveCommand = "mv " . $sourceFile->getPathName() . " " . $outputPath . "/" . $sourceFile->getBasename() . $csvSuffix;
+            $moveCommand = "mv " . $sourceFile->getPathname() . " " . $outputPath . "/" . $sourceFile->getBasename() . $csvSuffix;
             (new \Symfony\Component\Process\Process($moveCommand))->mustRun();
         }
     }
