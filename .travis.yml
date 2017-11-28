@@ -3,10 +3,11 @@ language: bash
 services:
   - docker
 before_script:
-  - docker -v
-  - docker-compose -v
-  - docker-compose build processor-move-files
-script: docker-compose run --rm --entrypoint sh -e KBC_DATADIR=/code/tests/data processor-move-files /code/tests/run.sh
+  - docker-compose build
+  - docker-compose run dev composer install
+  - docker-compose run dev ./vendor/bin/phpcs --standard=psr2 --ignore=vendor -n .
+  - docker-compose run dev ./vendor/bin/phpstan analyse --level=7 ./src ./tests ./main.php
+script: docker-compose run tests
 after_success:
   - docker images
 deploy:
@@ -15,5 +16,3 @@ deploy:
   script: ./deploy.sh
   on:
     tags: true
-notifications:
-  slack: keboola:P2zdEpeVA18zNNYXwgM8RFWG

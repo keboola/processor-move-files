@@ -1,10 +1,22 @@
 version: '2'
 services:
+  dev:
+    image: keboola/processor-move-files
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/code
+
   processor-move-files:
     build: .
     image: keboola/processor-move-files
     tty: true
     stdin_open: true
-    command: sh
+
+  tests:
+    image: keboola/processor-move-files
+    tty: true
+    stdin_open: true
     volumes:
-      - ./:/code
+      - .:/code
+    command: php /code/tests/run.php
