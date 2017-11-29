@@ -4,10 +4,10 @@ services:
   - docker
 before_script:
   - docker-compose build
-  - docker-compose run dev composer install
-  - docker-compose run dev ./vendor/bin/phpcs --standard=psr2 --ignore=vendor -n .
-  - docker-compose run dev ./vendor/bin/phpstan analyse --level=7 ./src ./tests ./main.php
-script: docker-compose run dev php /code/tests/run.php
+  - docker-compose run --rm dev composer install
+  - docker-compose run --rm dev ./vendor/bin/phpcs --standard=psr2 --ignore=vendor -n .
+  - docker-compose run --rm dev ./vendor/bin/phpstan analyse --level=7 ./src ./tests ./main.php
+script: docker-compose run --rm dev php /code/tests/run.php
 after_success:
   - docker images
 deploy:
