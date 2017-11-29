@@ -34,48 +34,37 @@ try {
         [isset($config["parameters"]) ? $config["parameters"] : []]
     );
 
-    $fs = new \Symfony\Component\Filesystem\Filesystem();
-
+    $renameSuffix = "";
     if ($parameters["direction"] === "files") {
+        $sourcePath = $dataFolder . "/in/tables";
         $outputPath = $dataFolder . "/out/files/";
-
-        $finder = new \Symfony\Component\Finder\Finder();
-        $finder->directories()->notName("*.manifest")->in($dataFolder . "/in/tables")->depth(0);
-        foreach ($finder as $sourceDirectory) {
-            $moveCommand = "mv " . $sourceDirectory->getPathname() . " " . $outputPath . "/" . $sourceDirectory->getBasename();
-            (new \Symfony\Component\Process\Process($moveCommand))->mustRun();
-        }
-
-        $finder = new \Symfony\Component\Finder\Finder();
-        $finder->notName("*.manifest")->in($dataFolder . "/in/tables")->depth(0);
-        foreach ($finder as $sourceFile) {
-            $moveCommand = "mv " . $sourceFile->getPathname() . " " . $outputPath . "/" . $sourceFile->getBasename();
-            (new \Symfony\Component\Process\Process($moveCommand))->mustRun();
-        }
     }
 
     if ($parameters["direction"] === "tables") {
+        $sourcePath = $dataFolder . "/in/files";
         $outputPath = $dataFolder . "/out/tables/";
 
-        $csvSuffix = "";
         if ($parameters["addCsvSuffix"] === true) {
-            $csvSuffix = ".csv";
-        }
-
-        $finder = new \Symfony\Component\Finder\Finder();
-        $finder->directories()->notName("*.manifest")->in($dataFolder . "/in/files")->depth(0);
-        foreach ($finder as $sourceDirectory) {
-            $moveCommand = "mv " . $sourceDirectory->getPathname() . " " . $outputPath . "/" . $sourceDirectory->getBasename() . $csvSuffix;
-            (new \Symfony\Component\Process\Process($moveCommand))->mustRun();
-        }
-
-        $finder = new \Symfony\Component\Finder\Finder();
-        $finder->files()->notName("*.manifest")->in($dataFolder . "/in/files")->depth(0);
-        foreach ($finder as $sourceFile) {
-            $moveCommand = "mv " . $sourceFile->getPathname() . " " . $outputPath . "/" . $sourceFile->getBasename() . $csvSuffix;
-            (new \Symfony\Component\Process\Process($moveCommand))->mustRun();
+            $renameSuffix = ".csv";
         }
     }
+    
+    $fs = new \Symfony\Component\Filesystem\Filesystem();
+
+    // move folders
+    $finder = new \Symfony\Component\Finder\Finder();
+    $finder->directories()->notName("*.manifest")->in($sourcePath)->depth(0);
+    foreach ($finder as $sourceDirectory) {
+        $fs->rename($sourceDirectory->getPathname(), $outputPath . "/" . $sourceDirectory->getBasename() . $renameSuffix);
+    }
+
+    // move files
+    $finder = new \Symfony\Component\Finder\Finder();
+    $finder->files()->notName("*.manifest")->in($sourcePath)->depth(0);
+    foreach ($finder as $sourceFile) {
+        $fs->rename($sourceFile->getPathname(), $outputPath . "/" . $sourceFile->getBasename() . $renameSuffix);
+    }
+
 } catch (\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException $e) {
     echo "Invalid configuration: " . $e->getMessage();
     exit(1);
