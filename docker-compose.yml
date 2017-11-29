@@ -6,17 +6,3 @@ services:
     stdin_open: true
     volumes:
       - .:/code
-
-  processor-move-files:
-    build: .
-    image: keboola/processor-move-files
-    tty: true
-    stdin_open: true
-
-  tests:
-    image: keboola/processor-move-files
-    tty: true
-    stdin_open: true
-    volumes:
-      - .:/code
-    command: php /code/tests/run.php

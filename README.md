@@ -9,17 +9,22 @@ Move files processor. Moves files (or folders with sliced tables)
   
 Does not copy manifest files.
  
-## Development
+# Development
  
 Clone this repository and init the workspace with following commands:
 
-- `docker-compose build`
+```
+git clone https://github.com/keboola/processor-move-files
+cd processor-move-files
+docker-compose build
 
-### TDD 
+```
 
- - Edit the code
- - Run `docker-compose run --rm --entrypoint sh -e KBC_DATADIR=/code/tests/data processor-move-files /code/tests/run.sh` 
- - Repeat
+Run the test suite using this command:
+
+```
+docker-compose run dev php /code/tests/run.php
+```
  
 # Integration
  - Build is started after push on [Travis CI](https://travis-ci.org/keboola/processor-move-files)
