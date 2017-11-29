@@ -48,7 +48,7 @@ try {
             $renameSuffix = ".csv";
         }
     }
-    
+
     $fs = new \Symfony\Component\Filesystem\Filesystem();
 
     // move folders
@@ -64,7 +64,6 @@ try {
     foreach ($finder as $sourceFile) {
         $fs->rename($sourceFile->getPathname(), $outputPath . "/" . $sourceFile->getBasename() . $renameSuffix);
     }
-
 } catch (\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException $e) {
     echo "Invalid configuration: " . $e->getMessage();
     exit(1);
