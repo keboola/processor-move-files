@@ -38,9 +38,7 @@ try {
     if ($parameters["direction"] === "files") {
         $sourcePath = $dataFolder . "/in/tables";
         $outputPath = $dataFolder . "/out/files/";
-    }
-
-    if ($parameters["direction"] === "tables") {
+    } else {
         $sourcePath = $dataFolder . "/in/files";
         $outputPath = $dataFolder . "/out/tables/";
 
