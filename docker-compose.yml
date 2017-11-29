@@ -1,6 +1,7 @@
 version: '2'
 services:
   dev:
+    build: .
     image: keboola/processor-move-files
     tty: true
     stdin_open: true
