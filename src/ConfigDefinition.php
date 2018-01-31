@@ -15,6 +15,7 @@ class ConfigDefinition implements ConfigurationInterface
         $rootNode
             ->children()
                 ->enumNode("direction")
+                    ->isRequired()
                     ->values(["tables", "files"])
                 ->end()
                 ->booleanNode("addCsvSuffix")
