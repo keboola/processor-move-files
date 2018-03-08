@@ -8,7 +8,38 @@ Move files processor. Moves files (or folders with sliced tables)
  - from `/in/files/*` to `/out/tables/*.csv` (optionally adds `.csv` suffix to each file)
   
 Does not copy manifest files.
- 
+
+# Usage
+
+## Sample configuration
+
+```
+{  
+    "definition": {
+        "component": "keboola.processor-move-files"
+    },
+    "parameters": {
+        "direction": "tables",
+        "addCsvSuffix": true
+    }
+}
+```
+
+## Parameters
+
+### direction (required)
+
+ - **tables**: from `/in/files/*` to `/out/tables/*` 
+ - **files**: from `/in/tables/*` to `/out/files/*`
+
+### addCsvSuffix (optional, default false)
+
+Available only on `tables` direction, adds `.csv` suffix to each file.
+
+### folder (optional, default empty)
+
+Move all files/table to a folder created in the destination. Existing subfolder structure will be nested.
+
 # Development
  
 Clone this repository and init the workspace with following commands:
@@ -32,30 +63,3 @@ docker-compose run --rm dev php /code/tests/run.php
    - build image
    - execute tests against new image
    - publish image to AWS ECR if the release is tagged
-   
-# Usage
-
-## Sample configuration
-
-```
-{  
-    "definition": {
-        "component": "keboola.processor-move-files"
-    },
-    "parameters": {
-        "direction": "tables",
-        "addCsvSuffix": true
-    }
-}
-```
-
-## Parameters
-
-### direction
-
- - **tables**: from `/in/files/*` to `/out/tables/*` 
- - **files**: from `/in/tables/*` to `/out/files/*`
-
-### addCsvSuffix
-
-Available only on `tables` direction, adds `.csv` suffix to each file.
