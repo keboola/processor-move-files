@@ -21,6 +21,9 @@ class ConfigDefinition implements ConfigurationInterface
                 ->booleanNode("addCsvSuffix")
                     ->defaultFalse()
                 ->end()
+                ->scalarNode("folder")
+                    ->defaultValue('')
+                ->end()
             ->end()
         ;
         return $treeBuilder;

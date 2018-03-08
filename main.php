@@ -49,6 +49,11 @@ try {
 
     $fs = new \Symfony\Component\Filesystem\Filesystem();
 
+    if ($parameters["folder"] !== "") {
+        $outputPath .= $parameters["folder"] . "/";
+        $fs->mkdir($outputPath);
+    }
+
     // move folders
     $finder = new \Symfony\Component\Finder\Finder();
     $finder->directories()->notName("*.manifest")->in($sourcePath)->depth(0);
