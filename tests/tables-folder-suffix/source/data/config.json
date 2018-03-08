@@ -1,0 +1,7 @@
+{
+  "parameters": {
+    "direction": "tables",
+    "addCsvSuffix": true,
+    "folder": "subfolder"
+  }
+}
