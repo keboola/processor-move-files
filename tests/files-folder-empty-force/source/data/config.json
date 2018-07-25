@@ -1,0 +1,7 @@
+{
+  "parameters": {
+    "direction": "files",
+    "folder": "subfolder",
+    "createEmptyFolder": true
+  }
+}

@@ -40,6 +40,10 @@ Available only on `tables` direction, adds `.csv` suffix to each file.
 
 Move all files/table to a folder created in the destination. Existing subfolder structure will be nested.
 
+### createEmptyFolder (optional, default false)
+
+If there are no files or folders found, an empty folder will be created. 
+
 # Development
  
 Clone this repository and init the workspace with following commands:
