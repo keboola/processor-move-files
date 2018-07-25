@@ -1,0 +1,7 @@
+{
+  "parameters": {
+    "direction": "tables",
+    "folder": "subfolder",
+    "createEmptyFolder": true
+  }
+}

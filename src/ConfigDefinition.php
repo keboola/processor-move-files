@@ -24,6 +24,9 @@ class ConfigDefinition implements ConfigurationInterface
                 ->scalarNode("folder")
                     ->defaultValue('')
                 ->end()
+                ->booleanNode("createEmptyFolder")
+                    ->defaultFalse()
+                ->end()
             ->end()
         ;
         return $treeBuilder;
