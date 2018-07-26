@@ -60,9 +60,7 @@ try {
     $finder = new \Symfony\Component\Finder\Finder();
     $finder->directories()->notName("*.manifest")->in($sourcePath)->depth(0);
     foreach ($finder as $sourceDirectory) {
-        if (!$fs->exists($outputPath)) {
-            $fs->mkdir($outputPath);
-        }
+        $fs->mkdir($outputPath);
         $fs->rename($sourceDirectory->getPathname(), $outputPath . "/" . $sourceDirectory->getBasename() . $renameSuffix);
     }
 
@@ -70,9 +68,7 @@ try {
     $finder = new \Symfony\Component\Finder\Finder();
     $finder->files()->notName("*.manifest")->in($sourcePath)->depth(0);
     foreach ($finder as $sourceFile) {
-        if (!$fs->exists($outputPath)) {
-            $fs->mkdir($outputPath);
-        }
+        $fs->mkdir($outputPath);
         $fs->rename($sourceFile->getPathname(), $outputPath . "/" . $sourceFile->getBasename() . $renameSuffix);
     }
 } catch (\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException $e) {
