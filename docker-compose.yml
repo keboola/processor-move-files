@@ -7,3 +7,4 @@ services:
     stdin_open: true
     volumes:
       - .:/code
+      - ./data:/data

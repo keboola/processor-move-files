@@ -1,7 +1,5 @@
 # processor-move-files
 
-[![Build Status](https://travis-ci.org/keboola/processor-move-files.svg?branch=master)](https://travis-ci.org/keboola/processor-move-files)
-
 Move files processor. Moves files (or folders with sliced tables)
 
  - from `/in/tables/*` to `/out/files/*` or
