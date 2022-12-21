@@ -65,3 +65,7 @@ docker-compose run --rm dev php /code/tests/run.php
    - build image
    - execute tests against new image
    - publish image to AWS ECR if the release is tagged
+
+## License
+
+MIT licensed, see [LICENSE](./LICENSE) file.
