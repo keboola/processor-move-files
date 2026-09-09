@@ -25,6 +25,7 @@
     },
     "scripts": {
         "tests": "php /code/tests/run.php",
+        "tests-cross-device": "php /code/tests/run-cross-device.php",
 
         "phpstan": "phpstan analyse ./src ./tests --level=max --no-progress -c phpstan.neon",
         "phpcs": "phpcs -n --ignore=vendor --extensions=php .",
@@ -32,7 +33,8 @@
         "build": [
             "@phpcs",
             "@phpstan",
-            "@tests"
+            "@tests",
+            "@tests-cross-device"
         ],
         "ci": [
             "@composer validate --no-check-publish --no-check-all",

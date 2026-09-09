@@ -2,8 +2,17 @@
 
 declare(strict_types=1);
 
-// Catch all warnings and notices
-set_error_handler(function ($errno, $errstr, $errfile, $errline, array $errcontext): ErrorException {
+// The base image ships no php.ini, so the default mask omits E_NOTICE, E_STRICT and E_DEPRECATED - and the
+// handler below keys its suppression test off error_reporting(), which would otherwise drop them silently.
+error_reporting(E_ALL);
+
+// @-suppressed warnings are left alone: suppression is how a library signals it has its own fallback for
+// the call failing, and turning the warning into an exception cuts that fallback off.
+set_error_handler(function ($errno, $errstr, $errfile, $errline): bool {
+    if (!(error_reporting() & $errno)) {
+        return false;
+    }
+
     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 });
 require __DIR__ . '/vendor/autoload.php';
